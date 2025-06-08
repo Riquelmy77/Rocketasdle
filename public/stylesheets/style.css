@@ -1,0 +1,285 @@
+body {
+    padding: 50px;
+    font: 14px "Futura ExtraBold", Helvetica, Arial, sans-serif;
+    background-image: url('https://wallpapercave.com/wp/wp9356287.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    image-rendering: auto;
+    color: #E5E5E5;
+}
+
+a {
+    color: #0A47CC;
+    color: #E5E5E5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    grid-gap: 5px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    background: transparent;
+    width: 300px;
+    height: auto;
+}
+
+#subtitle {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 1000;
+    color: #dfdfdf;
+    text-transform: uppercase;
+    font-family: Futura, 'Futura ExtraBold';
+}
+
+#subtitle span {
+    background: #9a319e;
+    padding: 5px 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .15);
+    border-style: solid;
+    border-color: #11100e;
+    border-radius: 8px;
+    background-image: url(https://img.freepik.com/premium-vector/purple-modern-abstract-wide-banner-with-geometric-shapes-dark-purple-abstract-background_156943-1748.jpg);
+    background-size: 100% 100%;
+    font-size: 15px;
+}
+
+.back-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    background: grey;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-button:hover {
+    background: gainsboro;
+}
+
+.back-button img {
+    height: 47px;
+    width: auto;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .button-game {
+        width: 95%;
+    }
+}
+
+.button-game {
+    margin: 10px;
+    border: 10px;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0;
+    text-align: left;
+    transition: all .1s ease-in-out;
+    width: 23%;
+    max-width: 370px;
+    overflow: clip;
+    position: relative;
+    color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+@media screen and (max-width: 1000px) {
+    .button-title {
+        top: 27.982px;
+        left: 117.79px;
+        font-size: 26.94px;
+    }
+}
+
+@media screen and (max-width: 1608px) {
+    .button-title {
+        top: 1.6vw;
+        left: 7vw;
+        font-size: 1.6vw;
+    }
+}
+
+.button-title {
+    position: absolute;
+    top: 7px;
+    left: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 2px 2px rgba(0, 0, 0, .3);
+}
+
+.button-description {
+    position: absolute;
+    bottom: 5px;
+    left: 25px;
+    font-size: 12px;
+    font-weight: 300;
+    color: hsla(0, 0%, 100%, .851);
+    text-align: left;
+    text-shadow: 2px 2px rgba(0, 0, 0, .2);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    max-width: 334px;
+}
+
+.car-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.car-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: 0 auto;
+    background-color: ghostwhite;
+}
+
+.guess-container {
+    width: auto;
+    height: 50px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.guess-search {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guess-search input[type="text"] {
+    width: 300px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 25px;
+    flex: 1;
+}
+
+.guess-search button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.guess-button:hover {
+    cursor: pointer;
+}
+
+.guess-button {
+    display: flex;
+    height: 50px;
+    width: auto;
+    margin-left: 5px;
+}
+
+.car-attributes {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.car-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 18px;
+    border-radius: 10px;
+    min-width: 90px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.car-card.green {
+    background: #3cb371;
+}
+
+.car-card.red {
+    background: #e74c3c;
+}
+
+.car-label {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-bottom: 4px;
+}
+
+.car-value {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.goal-image img {
+    height: 300px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.goal-image {
+    margin-bottom: 20px;
+}
+
+.engine-image img {
+    height: 300px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.engine-image {
+    margin-bottom: 20px;
+}
