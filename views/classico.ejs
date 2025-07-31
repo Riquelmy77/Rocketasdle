@@ -11,40 +11,122 @@
     </a>
 
     <div class="guess-container">
-
+        <div id="parabens-msg">
+             Parabéns, você é bom!!!
+        </div>
+        <div id="guess-area">
         <div class="guess-search">
-            <input type="text" placeholder="Nome do carro">
+            <input type="text" id="car-input" placeholder="Nome do carro">
+            <button id="search-btn" style="background:none;border:none;cursor:pointer;">
+                <img src="https://cdn-icons-png.flaticon.com/128/9187/9187510.png" alt="guess" class="guess-button-image">
+            </button>
+        </div>
+        <div id ="car-suggestions"></div>
+        </div>
+        <div id="search-results"></div>
+        <script>
+            window.carroResposta = <%- JSON.stringify(carroResposta) %>;
 
+          const input = document.getElementById('car-input');
+          const suggestionsDiv = document.getElementById('car-suggestions');
+          const query = document.getElementById('car-input').value;
+          const resultsDiv = document.getElementById('search-results');
+          
+          let enviados = [];
+
+        document.getElementById('search-btn').addEventListener('click', async function() {
+          const query = input.value.trim();
+        if (!query) return;
+          
+          const res = await fetch(`/classico/search?q=${encodeURIComponent(query)}`);
+          const carros = await res.json();
+
+          if (carros.length > 0) {
+            enviados.push(carros[0].nome);
+          }
+
+          let acertou = carros.some(car => car.nome === window.carroResposta.nome);
+          
+          resultsDiv.innerHTML = carros.map(car => {
+            const corNome = car.nome === window.carroResposta.nome ? 'green' : 'red';
+            
+            const normalize = str => str.toLowerCase().split(',').map(s => s.trim());
+            const respostaRaridade = normalize(window.carroResposta.raridade);
+            const chuteRaridade = normalize(car.raridade);
+
+            let corRaridade = 'red';
+            if (car.raridade === window.carroResposta.raridade) {
+                corRaridade = 'green';
+            } else if (chuteRaridade.some(r => respostaRaridade.includes(r))) {
+                corRaridade = 'yellow';
+            }
+
+            const corHitbox = car.hitbox === window.carroResposta.hitbox ? 'green' : 'red';
+            const corAno = car.ano === window.carroResposta.ano ? 'green' : 'red';
+
+            return `
+            <div class="car-container" style="margin-bottom:10px;display:flex;align-items:center;gap:16px;">
+                <div class="car-image">
+                    <img src="${car.imagem}" alt="${car.nome}" style="width:120px;height:90px;object-fit:cover;border-radius:10px;">
+                </div>
+                <div class="car-attributes" style="display:flex;gap:8px;">
+                    <div class="car-card ${corNome}">
+                        <span class="car-label">Nome</span>
+                        <span class="car-value">${car.nome}</span>
+                    </div>
+                    <div class="car-card ${corRaridade}">
+                        <span class="car-label">Raridade</span>
+                        <span class="car-value">${car.raridade}</span>
+                    </div>
+                    <div class="car-card ${corHitbox}">
+                        <span class="car-label">Hitbox</span>
+                        <span class="car-value">${car.hitbox}</span>
+                    </div>
+                    <div class="car-card ${corAno}">
+                        <span class="car-label">Ano</span>
+                        <span class="car-value">${car.ano}</span>
+                    </div>
+                </div>
+            </div>`
+        }).join('') + resultsDiv.innerHTML;
+
+        if (acertou) {
+        document.getElementById('guess-area').style.display = 'none';
+        document.getElementById('parabens-msg').style.display = 'block';
+    }
+        });
+
+        input.addEventListener('input', async function() {
+            const query = input.value.trim();
+            if (!query) {
+                suggestionsDiv.style.display = 'none';
+                suggestionsDiv.innerHTML = '';
+                return;
+            }
+        const res = await fetch(`/classico/search?q=${encodeURIComponent(query)}`);
+        let carros = await res.json();
+
+        carros = carros.filter(car => !enviados.includes(car.nome));
+
+        if (carros.length === 0) {
+        suggestionsDiv.style.display = 'none';
+        suggestionsDiv.innerHTML = '';
+        return;
+    }
+    suggestionsDiv.style.display = 'block';
+    suggestionsDiv.innerHTML = carros.map(car => `
+        <div class="suggestion-item" onclick=
+        "document.getElementById('car-input').value='${car.nome}';
+         document.getElementById('car-suggestions').style.display='none';
+         document.getElementById('car-suggestions').innerHTML='';">
+            <img src="${car.imagem}" alt="${car.nome}" class="suggestion-image">
+            <span class="suggestion-name">${car.nome}</span>
         </div>
-        <div class="guess-button">
-            <img src="https://cdn-icons-png.flaticon.com/128/9187/9187510.png" alt="guess" class="guess-button-image">
-        </div>
+    `).join('');
+});
+        </script>
     </div>
 
-    <div class="car-container">
-        <div class="car-image">
-            <img src="https://th.bing.com/th/id/R.8d09a7b636a91c2bd8ab6324016f0270?rik=dnv9kQhY4R1%2b6g&pid=ImgRaw&r=0">
-        </div>
-
-        <div class="car-attributes">
-            <div class="car-card green">
-                <span class="car-label">Nome</span>
-                <span class="car-value">Octane</span>
-            </div>
-            <div class="car-card red">
-                <span class="car-label">Raridade</span>
-                <span class="car-value">Comum</span>
-            </div>
-            <div class="car-card green">
-                <span class="car-label">Hitbox</span>
-                <span class="car-value">Octane</span>
-            </div>
-            <div class="car-card red">
-                <span class="car-label">Ano</span>
-                <span class="car-value">2015</span>
-            </div>
-        </div>
-    </div>
     </body>
 
     <footer>

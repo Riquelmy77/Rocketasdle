@@ -179,15 +179,19 @@ img {
 }
 
 .guess-container {
-    width: auto;
-    height: 50px;
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 5px;
 }
 
 .guess-search {
+    width: auto;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    gap: 8px;
     background: #fff;
     border: 2px solid gray;
     border-radius: 5px;
@@ -196,22 +200,26 @@ img {
 }
 
 .guess-search input[type="text"] {
-    width: 300px;
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;  
     border: none;
     outline: none;
     padding: 10px;
     font-size: 16px;
     border-radius: 25px;
-    flex: 1;
 }
 
 .guess-search button {
     border: none;
-    padding: 10px 15px;
+    padding: 0 8px;      
     border-radius: 25px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 12px;
+    height: 36px;        
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .guess-button:hover {
@@ -225,10 +233,19 @@ img {
     margin-left: 5px;
 }
 
+.guess-button-image {
+    width: 24px;         
+    height: 24px;
+}
+
 .car-attributes {
     display: flex;
     gap: 10px;
     margin: 20px 0;
+    max-width: 600px; 
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
 }
 
 .car-card {
@@ -249,6 +266,10 @@ img {
 
 .car-card.red {
     background: #e74c3c;
+}
+
+.car-card.yellow {
+    background: #f1c40f;
 }
 
 .car-label {
@@ -282,4 +303,60 @@ img {
 
 .engine-image {
     margin-bottom: 20px;
+}
+
+#search-results {
+    width: 100%;      
+    max-width: 600px;  
+    margin-top: 12px;
+    display: block;
+}
+
+.suggestion-image {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f8f8f8;
+}
+
+#car-suggestions {
+    display: none;
+    margin-top: 8px;
+    width: 310px;
+    max-height: 200px;
+    background: #fff;           
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow-y: auto;
+    z-index: 100;
+    margin-top: 8px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(36, 35, 35);
+}
+
+.suggestion-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    background: #f7f7f7; 
+    transition: background 0.2s;
+}
+
+.suggestion-item:hover {
+    background: #e0e0e0;
+}
+
+#parabens-msg {
+    display: none;
+    text-align: center;
+    font-size: 2em;
+    color: #3cb371;
+    margin-top: 20px;
 }

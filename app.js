@@ -4,6 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const mongoose = require('mongoose');
+require('dotenv').config();
+mongoose.connect(process.env.URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 var indexRouter = require('./routes/index');
 var classicoRouter = require('./routes/classico');
 var usersRouter = require('./routes/users');
