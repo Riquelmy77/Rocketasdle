@@ -14,8 +14,7 @@ mongoose.connect(process.env.URI, {
 var indexRouter = require('./routes/index');
 var classicoRouter = require('./routes/classico');
 var usersRouter = require('./routes/users');
-var motorRouter = require('./routes/motor');
-var golRouter = require('./routes/gol');
+
 
 var app = express();
 
@@ -32,8 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/classico', classicoRouter);
 app.use('/users', usersRouter);
-app.use('/motor', motorRouter);
-app.use('/gol', golRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
